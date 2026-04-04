@@ -7,6 +7,7 @@ export const FormCollection = ({addpdt , takebackData} : any)=>{
     
     
     const [formData, setFormData] = useState<FormData>({name : ''  , input : '' , id : ''  })
+    const [error , setError ] = useState<string>(null)
 
    useEffect(() => {
   if (takebackData) {
@@ -20,6 +21,18 @@ export const FormCollection = ({addpdt , takebackData} : any)=>{
     const {name , value} = e.target ;
 
     setFormData({...formData , name : name , input : value  });
+
+    console.log(typeof(value));
+
+    if(value){
+      setError("yo");
+      console.log(error);
+
+    }else {setError(null)}
+
+
+
+
     
 
   }
@@ -40,6 +53,7 @@ export const FormCollection = ({addpdt , takebackData} : any)=>{
    <form  onSubmit={handleSubmit}>
     <h1>To Do List</h1>
     <input type='text' placeholder='Your Task' name='task' value={formData.input} onChange={handleFormData}></input>
+    <p>{error}</p>
     <button type='submit' >Submit</button>
 
     
